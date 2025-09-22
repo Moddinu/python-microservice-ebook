@@ -1,6 +1,5 @@
 
 # Encapsualtion
-Is when we hide complex code in small methods Method 1 and Methods 2 do the same thing , Method 2 loks easier
 
 # Method 1 
 import json
@@ -120,34 +119,3 @@ print_area(Square(4))
 # https://www.digitalocean.com/community/conceptual-articles/s-o-l-i-d-the-first-five-principles-of-object-oriented-design
 
 
-1. Entities
-
-Entities are objects that have a distinct identity that persists over time. They are defined by their identity, not their attributes. This means that even if the attributes of an entity change, it is still considered the same entity if its identity remains the same.
-
-Key Characteristics of Entities:
-
-Identity: Every entity has a unique identity (e.g., an ID or GUID) that differentiates it from other entities.
-
-Lifecycle: Entities typically have a lifecycle. They may be created, updated, and deleted over time.
-
-Mutable: Entities often change their state (attributes) over time while still being considered the same entity.
-
-Example:
-
-Customer: A customer entity may have attributes like name, address, and email. The customer is identified by their unique customer ID, not by the specific attributes. Even if the customer’s address changes, it is still the same customer as long as the ID remains the same.
-
-2. Value Objects
-
-Value objects, on the other hand, are defined by their attributes and do not have an identity. They are considered immutable, meaning once a value object is created, its properties cannot change. If you need a different state, you create a new value object.
-
-Key Characteristics of Value Objects:
-
-No Identity: Value objects are not identified by a unique identity, but by their attributes. If two value objects have the same attributes, they are considered the same.
-
-Immutable: Value objects are immutable, meaning their state cannot be modified after creation.
-
-Interchangeable: If two value objects have the same value, they can be used interchangeably in the domain model.
-
-Example:
-
-Address: An address (street, city, zip code, etc.) is a value object. Two addresses that have the same values for all fields are considered equal, and there is no need to track a unique identity for each one. If you need to change the address, you create a new address object.
