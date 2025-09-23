@@ -1,4 +1,10 @@
-from model import Batch,OrderLine
+from app.models import Batch, OrderLine
+from datetime import date,timedelta
+
+
+today = date.today()
+tomorrow = today + timedelta(days=1)
+later = today + timedelta(days=10)
 
 def make_batch_and_line(sku, batch_qty, line_qty):
     return (

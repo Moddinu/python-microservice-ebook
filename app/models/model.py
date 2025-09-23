@@ -1,5 +1,6 @@
 from dataclasses import dataclass
-from typing import Optional,date
+from typing import Optional,List
+from datetime import date
 
 @dataclass(frozen=True)  
 class OrderLine:
@@ -19,7 +20,7 @@ class Batch:
         if self.can_allocate(line):
             self._allocations.add(line)
 
-    def dellocate(self,line:OrderLine):
+    def deallocate(self,line:OrderLine):
         if line in self._allocations:
             self._allocations.remove(line)
 
@@ -41,3 +42,23 @@ class Batch:
     
     def __hash__(self):
         return hash(self.reference)
+    
+    def __gt__(self, other):
+        if self.eta is None:
+            return False
+        if other.eta is None:
+            return True
+        return self.eta > other.eta
+
+
+class OutOfStock(Exception):
+    pass
+
+def allocate(line: OrderLine, batches: List[Batch]) -> str:
+    try:
+        batch = next(b for b in sorted(batches) if b.can_allocate(line))
+        batch.allocate(line)
+        return batch.reference
+    except StopIteration:
+        raise OutOfStock(f'Out of stock for sku {line.sku}')
+
